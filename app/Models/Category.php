@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 class Category extends Model
 {
     use HasFactory;
@@ -55,6 +56,12 @@ class Category extends Model
     public function scopeParent($query)
     {
         return $query->whereNull('parent_id');
+    }
+
+    // Add the missing ordered scope
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('sort_order')->orderBy('name');
     }
 
     // Helper methods

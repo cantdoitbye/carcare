@@ -14,12 +14,18 @@ return Application::configure(basePath: dirname(__DIR__))
         then: function () {
             Route::middleware('web')
                 ->group(base_path('routes/admin.php'));
+             Route::middleware('api')
+                ->prefix('api')
+                ->group(base_path('routes/api.php'));    
         },
     )
     ->withMiddleware(function (Middleware $middleware): void {
           $middleware->alias([
             'admin.auth' => \App\Http\Middleware\AdminAuth::class,
         ]);
+         $middleware->api(prepend: [
+        \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+    ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

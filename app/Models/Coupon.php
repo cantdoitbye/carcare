@@ -298,4 +298,62 @@ class Coupon extends Model
             default => 'inactive'
         };
     }
+
+
+
+
+
+public function canApplyToProducts(array $productIds): bool
+{
+    // If no product restrictions, coupon applies to all products
+    if (empty($this->applicable_products) && empty($this->excluded_products)) {
+        return true;
+    }
+
+    // Check if any products are excluded
+    if (!empty($this->excluded_products)) {
+        $excludedProducts = array_intersect($productIds, $this->excluded_products);
+        if (!empty($excludedProducts)) {
+            return false;
+        }
+    }
+
+    // Check if products are in applicable list
+    if (!empty($this->applicable_products)) {
+        $applicableProducts = array_intersect($productIds, $this->applicable_products);
+        return !empty($applicableProducts);
+    }
+
+    return true;
 }
+
+public function canApplyToCategories(array $categoryIds): bool
+{
+    // If no category restrictions, coupon applies to all categories
+    if (empty($this->applicable_categories) && empty($this->excluded_categories)) {
+        return true;
+    }
+
+    // Check if any categories are excluded
+    if (!empty($this->excluded_categories)) {
+        $excludedCategories = array_intersect($categoryIds, $this->excluded_categories);
+        if (!empty($excludedCategories)) {
+            return false;
+        }
+    }
+
+    // Check if categories are in applicable list
+    if (!empty($this->applicable_categories)) {
+        $applicableCategories = array_intersect($categoryIds, $this->applicable_categories);
+        return !empty($applicableCategories);
+    }
+
+    return true;
+}
+
+
+
+
+}
+
+
