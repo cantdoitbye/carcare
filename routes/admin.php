@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -47,5 +48,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('generate-coupon-code', [CouponController::class, 'generateCode'])->name('coupons.generate-code');
     Route::post('validate-coupon-code', [CouponController::class, 'validateCode'])->name('coupons.validate-code');
 
+
+          Route::get('banners', [BannerController::class, 'index'])->name('banners.index');
+        Route::post('banners', [BannerController::class, 'store'])->name('banners.store');
+        Route::delete('banners/{banner}', [BannerController::class, 'destroy'])->name('banners.destroy');
+   
 });
 });

@@ -75,8 +75,9 @@ class Banner extends Model
         return true;
     }
 
+    // Updated to work with public folder images
     public function getImageUrlAttribute(): string
     {
-        return asset('storage/' . $this->image_path);
+        return asset($this->image_path);
     }
 }

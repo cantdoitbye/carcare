@@ -282,6 +282,10 @@
         <a href="{{ route('admin.coupons.export') }}" class="menu-item">
             <i class="fas fa-ticket-alt"></i> Export Coupons
         </a>
+
+          <a href="{{ route('admin.banners.index') }}" class="menu-item {{ request()->routeIs('admin.banners.*') ? 'active' : '' }}">
+        <i class="fas fa-images"></i> Banner Management
+    </a>
     </div>
     
     <!-- Orders Section (for future) -->
