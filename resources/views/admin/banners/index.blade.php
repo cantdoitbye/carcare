@@ -24,7 +24,7 @@
                                 <th>Image</th>
                                 <th>Title</th>
                                 <th>Type</th>
-                                <th>Status</th>
+                                {{-- <th>Status</th> --}}
                                 <th>Sort Order</th>
                                 <th>Created</th>
                                 <th>Actions</th>
@@ -53,13 +53,13 @@
                                         {{ ucfirst($banner->type) }}
                                     </span>
                                 </td>
-                                <td>
+                                {{-- <td>
                                     @if($banner->isActive())
                                         <span class="badge bg-success">Active</span>
                                     @else
                                         <span class="badge bg-secondary">Inactive</span>
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td>{{ $banner->sort_order }}</td>
                                 <td>{{ $banner->created_at->format('M d, Y') }}</td>
                                 <td>
