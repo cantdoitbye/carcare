@@ -50,7 +50,7 @@ class BannerController extends Controller
         }
 
         // Set default values
-        $data['is_active'] = $request->boolean('is_active', true);
+        $data['is_active'] = true;
         $data['sort_order'] = $request->sort_order ?? 0;
 
         Banner::create($data);
