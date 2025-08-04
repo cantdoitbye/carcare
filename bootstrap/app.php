@@ -20,8 +20,16 @@ return Application::configure(basePath: dirname(__DIR__))
         },
     )
     ->withMiddleware(function (Middleware $middleware): void {
+                $middleware->append(\App\Http\Middleware\Cors::class);
+
           $middleware->alias([
             'admin.auth' => \App\Http\Middleware\AdminAuth::class,
+            'cors' => \App\Http\Middleware\Cors::class,
+
+        ]);
+
+           $middleware->validateCsrfTokens(except: [
+            'api/*',
         ]);
          $middleware->api(prepend: [
         \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,

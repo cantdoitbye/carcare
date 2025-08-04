@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\WishlistController;
 use App\Http\Controllers\Api\ContactController;
 
 // Authentication APIs
+Route::middleware('api')->group(function () {
+
 Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
@@ -56,3 +58,5 @@ Route::middleware('auth:sanctum')->prefix('wishlist')->group(function () {
 
 // Contact API
 Route::post('contact', [ContactController::class, 'store']);
+
+});
