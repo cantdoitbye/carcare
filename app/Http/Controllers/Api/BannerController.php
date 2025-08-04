@@ -12,8 +12,7 @@ class BannerController extends Controller
     {
         $type = $request->get('type', 'hero'); // hero, promotional, sidebar
         
-        $banners = Banner::active()
-                        ->byType($type)
+        $banners = Banner::byType($type)
                         ->ordered()
                         ->get()
                         ->map(function ($banner) {
